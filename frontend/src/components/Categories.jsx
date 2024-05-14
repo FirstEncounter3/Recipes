@@ -1,24 +1,31 @@
-import React from "react";
-import axios from 'axios';
+import React, { useEffect } from "react";
+import { Link, Routes, Route, BrowserRouter } from "react-router-dom";
+
+import api from "../api";
+import "../styles/App.css";
+
+import Recipes from "./Recipes";
 
 const Categories = () => {
-    const baseUrl = 'http://127.0.0.1:8000/api'
-    const [categories, setCategories] = React.useState([])
+  const [categories, setCategories] = React.useState([]);
 
-    axios.get(`${baseUrl}/categories`).then((response) => {
-        console.log(response.data);
-        setCategories(response.data);
-    })
-    return (
-        <div>
-            <h1>Categories</h1>
-            <ul>
-                {categories.map((category) => (
-                    <li key={category.id}>{category.name}</li>
-                ))}
-            </ul>
-        </div>
-    )
-}
+  useEffect(() => {
+    api.getCategories().then((response) => {
+      setCategories(response.data);
+    });
+  }, []);
 
-export default Categories
+  return (
+    <div className="content-container">
+      <ul>
+        {categories.map((category) => (
+          <li key={category.id}>
+            <Link to={`/recipes/${category.id}`}>{category.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Categories;

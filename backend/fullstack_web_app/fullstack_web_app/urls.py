@@ -21,7 +21,7 @@ from django.urls import path
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from server.views import CategoryList, RecipeList, CategoryDetail, RecipeDetail
+from server.views import CategoryList, RecipeList, CategoryDetail, RecipeDetail, RecipeByCategory
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -38,9 +38,10 @@ schema_view = get_schema_view(
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/categories/", CategoryList.as_view(), name="categories"),
-    path("api/categories/<int:id>/", CategoryDetail.as_view(), name="category"),
+    path("api/category/<int:id>/", CategoryDetail.as_view(), name="category"),
     path("api/recipes/", RecipeList.as_view(), name="recipes"),
-    path("api/recipes/<int:id>/", RecipeDetail.as_view(), name="recipe"),
+    path("api/recipe_by_id/<int:id>/", RecipeDetail.as_view(), name="recipe"),
+    path("api/recipes_by_category_id/<int:category_id>/", RecipeByCategory.as_view(), name="recipe_by_category"),
 
     path(
         "api/swagger(?P<format>\.json|\.yaml)",
@@ -48,7 +49,7 @@ urlpatterns = [
         name="schema-json",
     ),
     path(
-        "api/swagger/",
+        "",
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),

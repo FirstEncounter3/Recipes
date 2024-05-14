@@ -128,9 +128,50 @@ class RecipeDetail(APIView):
                 "instructions": recipe.instructions,
                 "photo": recipe.photo.url,
                 "category": recipe.category.name,
+                "category_id": recipe.category.id,
                 "ingredients_beta": recipe.ingredients_beta,
                 "instructions_beta": recipe.instructions_beta,
             }
             return Response(recipe_data)
         except Recipe.DoesNotExist:
             return Response(status=404)
+
+
+class RecipeByCategory(APIView):
+    def get(self, request, category_id: int):
+        """
+        Retrieves a list of recipes from the database based on the provided category ID and returns them as a JSON response.
+
+        Parameters:
+            request (HttpRequest): The HTTP request object.
+            category_id (int): The ID of the category to retrieve recipes from.
+
+        Returns:
+            Response: A JSON response containing a list of dictionaries, each representing a recipe. Each dictionary contains the following keys:
+                - id (int): The ID of the recipe.
+                - title (str): The title of the recipe.
+                - description (str): The description of the recipe.
+                - ingredients (str): The ingredients of the recipe.
+                - instructions (str): The instructions for preparing the recipe.
+                - photo (str): The URL of the recipe's photo.
+                - category_name (str): The name of the category the recipe belongs to.
+                - category_id (int): The ID of the category the recipe belongs to.
+                - ingredients_beta (str): Additional ingredients for the recipe.
+                - instructions_beta (str): Additional instructions for preparing the recipe.
+        """
+        recipes = [
+                {
+                    "id": recipes.id,
+                    "title": recipes.title,
+                    "description": recipes.description,
+                    "ingredients": recipes.ingredients,
+                    "instructions": recipes.instructions,
+                    "photo": recipes.photo.url,
+                    "category_name": recipes.category.name,
+                    "category_id": recipes.category.id,
+                    "ingredients_beta": recipes.ingredients_beta,
+                    "instructions_beta": recipes.instructions_beta,
+                } 
+                for recipes in Recipe.objects.filter(category_id=category_id)
+            ]
+        return Response(recipes)

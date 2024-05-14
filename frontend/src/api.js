@@ -1,22 +1,31 @@
-import axios from 'axios';
+import axios from "axios";
 
-const baseUrl = 'http://127.0.0.1:8000/api'
+const baseUrl = "http://127.0.0.1:8000/api";
 
-export const getCategories = () => {
-    axios.get(`${baseUrl}/categories`).then((response) => {
-        console.log(response.data);
-        return response.data;
-    });
+const getCategories = () => {
+  return axios.get(`${baseUrl}/categories`);
 };
 
-export const getCategory = (id) => {
-    return axios.get(`${baseUrl}/categories/${id}`);
+const getCategory = (id) => {
+  return axios.get(`${baseUrl}/category/${id}`);
 };
 
-export const getRecipes = () => {
-    return axios.get(`${baseUrl}/recipes`);
+const getRecipes = () => {
+  return axios.get(`${baseUrl}/recipes`);
 };
 
-export const getRecipe = (id) => {
-    return axios.get(`${baseUrl}/recipes/${id}`);
+const getRecipe = (id) => {
+  return axios.get(`${baseUrl}/recipe_by_id/${id}`);
+};
+
+const getRecipeByCategoryId = (id) => {
+  return axios.get(`${baseUrl}/recipes_by_category_id/${id}`);
+};
+
+export default {
+  getCategories,
+  getCategory,
+  getRecipes,
+  getRecipe,
+  getRecipeByCategoryId,
 };
