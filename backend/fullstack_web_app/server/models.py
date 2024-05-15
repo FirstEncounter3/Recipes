@@ -6,13 +6,9 @@ from django.db import models
 class Recipe(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    ingredients = models.TextField()
-    ingredients_beta = models.JSONField(default=list)
-    instructions_beta = models.JSONField(default=dict)
-    instructions = models.TextField()
-    photo = models.ImageField(
-        upload_to="recipe_photos", default="../default/recipe.jpg"
-    )
+    ingredients = models.JSONField(default=list)
+    instructions = models.JSONField(default=dict)
+    photo_url = models.CharField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

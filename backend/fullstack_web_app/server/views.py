@@ -72,11 +72,9 @@ class RecipeList(APIView):
                 - description (str): The description of the recipe.
                 - ingredients (str): The ingredients of the recipe.
                 - instructions (str): The instructions for preparing the recipe.
-                - photo (str): The URL of the recipe's photo.
+                - photo_url (str): The URL of the recipe's photo.
                 - category_name (str): The name of the category the recipe belongs to.
                 - category_id (int): The ID of the category the recipe belongs to.
-                - ingredients_beta (str): Additional ingredients for the recipe.
-                - instructions_beta (str): Additional instructions for preparing the recipe.
         """
         recipes = [
             {
@@ -85,11 +83,9 @@ class RecipeList(APIView):
                 "description": recipes.description,
                 "ingredients": recipes.ingredients,
                 "instructions": recipes.instructions,
-                "photo": recipes.photo.url,
+                "photo_url": recipes.photo_url,
                 "category_name": recipes.category.name,
                 "category_id": recipes.category.id,
-                "ingredients_beta": recipes.ingredients_beta,
-                "instructions_beta": recipes.instructions_beta,
             }
             for recipes in Recipe.objects.all()
         ]
@@ -112,10 +108,8 @@ class RecipeDetail(APIView):
                 - description (str): The description of the recipe.
                 - ingredients (str): The ingredients of the recipe.
                 - instructions (str): The instructions for preparing the recipe.
-                - photo (str): The URL of the recipe's photo.
+                - photo_url (str): The URL of the recipe's photo.
                 - category (str): The name of the category the recipe belongs to.
-                - ingredients_beta (str): Additional ingredients for the recipe.
-                - instructions_beta (str): Additional instructions for preparing the recipe.
             If the recipe is not found, the response will have a status code of 404.
         """
         try:
@@ -126,11 +120,9 @@ class RecipeDetail(APIView):
                 "description": recipe.description,
                 "ingredients": recipe.ingredients,
                 "instructions": recipe.instructions,
-                "photo": recipe.photo.url,
+                "photo_url": recipe.photo_url,
                 "category": recipe.category.name,
                 "category_id": recipe.category.id,
-                "ingredients_beta": recipe.ingredients_beta,
-                "instructions_beta": recipe.instructions_beta,
             }
             return Response(recipe_data)
         except Recipe.DoesNotExist:
@@ -153,11 +145,9 @@ class RecipeByCategory(APIView):
                 - description (str): The description of the recipe.
                 - ingredients (str): The ingredients of the recipe.
                 - instructions (str): The instructions for preparing the recipe.
-                - photo (str): The URL of the recipe's photo.
+                - photo_url (str): The URL of the recipe's photo.
                 - category_name (str): The name of the category the recipe belongs to.
                 - category_id (int): The ID of the category the recipe belongs to.
-                - ingredients_beta (str): Additional ingredients for the recipe.
-                - instructions_beta (str): Additional instructions for preparing the recipe.
         """
         recipes = [
                 {
@@ -166,11 +156,9 @@ class RecipeByCategory(APIView):
                     "description": recipes.description,
                     "ingredients": recipes.ingredients,
                     "instructions": recipes.instructions,
-                    "photo": recipes.photo.url,
+                    "photo": recipes.photo_url,
                     "category_name": recipes.category.name,
                     "category_id": recipes.category.id,
-                    "ingredients_beta": recipes.ingredients_beta,
-                    "instructions_beta": recipes.instructions_beta,
                 } 
                 for recipes in Recipe.objects.filter(category_id=category_id)
             ]

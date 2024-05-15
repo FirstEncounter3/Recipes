@@ -18,8 +18,6 @@ class RecipeSerializer(serializers.ModelSerializer):
             "description",
             "ingredients",
             "instructions",
-            "photo",
+            "photo_url",
             "category",
-            "ingredients_beta",
-            "instructions_beta",
         ]

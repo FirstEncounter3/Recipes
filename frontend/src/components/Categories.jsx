@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
-import { Link, Routes, Route, BrowserRouter } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import api from "../api";
 import "../styles/App.css";
 
-import Recipes from "./Recipes";
-
 const Categories = () => {
-  const [categories, setCategories] = React.useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     api.getCategories().then((response) => {

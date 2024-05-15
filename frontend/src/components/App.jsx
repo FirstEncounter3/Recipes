@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 
-import Categories from "./Categories";
 import Home from "./Home";
+import NotFound from "./NotFound";
+import Categories from "./Categories";
 import Recipes from "./Recipes";
 import Recipe from "./Recipe";
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/recipes/:id" element={<Recipes />} />
         <Route path="/recipe/:id" element={<Recipe />} />
         <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
