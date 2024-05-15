@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import api from "../api";
-import "../styles/App.css";
+import api from "../../api";
+import "./Categories.css";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -17,7 +17,7 @@ const Categories = () => {
     <div className="content-container">
       <ul>
         {categories.map((category) => (
-          <li key={category.id}>
+          <li className="category-nav" key={category.id}>
             <Link to={`/recipes/${category.id}`}>{category.name}</Link>
           </li>
         ))}

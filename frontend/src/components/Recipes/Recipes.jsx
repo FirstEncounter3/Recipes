@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import api from "../api";
-import "../styles/App.css";
+import api from "../../api";
+import "./Recipes.css";
 
 const Recipes = () => {
   const category = useParams();
@@ -14,7 +14,7 @@ const Recipes = () => {
       setRecipes(response.data);
     });
   }, []);
-  console.log(recipes);
+
   return (
     <div className="content-container">
       <ul>
@@ -24,7 +24,9 @@ const Recipes = () => {
           </li>
         ))}
       </ul>
-      <Link to="/categories" className="back">Back</Link>
+      <Link to="/categories" className="back">
+        Back
+      </Link>
     </div>
   );
 };

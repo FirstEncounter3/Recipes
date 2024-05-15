@@ -1,0 +1,35 @@
+.recipe-title {
+  margin: 40px;
+  text-align: center;
+}
+
+.recipe-description {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipe-description p {
+  text-align: center;
+  color: lightseagreen;
+}
+
+.recipe-main {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.back-to-category {
+  margin-top: 60px;
+}
+
+@media screen and (max-width: 600px) {
+  .recipe-main {
+    flex-direction: column;
+    align-items: center;
+  }
+}
