@@ -5,8 +5,6 @@ WORKDIR /recipes_app/frontend
 COPY package*.json ./
 
 RUN npm install
-RUN npm install -g webpack-dev-server
-RUN npm install -g webpack-cli
 
 COPY . .
 
