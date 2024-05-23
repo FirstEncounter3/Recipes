@@ -14,6 +14,17 @@ git clone https://github.com/FirstEncounter3/Recipes.git
 2. Выполните установку зависимостей npm install
 3. Запустите webpack-dev-server командой npm run start. Страница приложения автоматически откроется
 
+## Запуск при помощи Docker
 
-## Запуск при помощи Dockercompose
-1. Запустите приложение, выполнив команду docker-compose up в корневой директории проекта
+# Backend
+1. Зайдите в папку backend и откройте в ней терминал
+2. Выполните docker build -t backend .
+3. Выполните docker run -p 8000:8000 backend
+
+# Frontend
+1. Зайдите в папку frontend и откройте в ней терминал
+2. Выполните docker build -t frontend .
+3. Выполните docker run -p 8080:8080 frontend
+
+## Запуск при помощи Dockercompose 
+В разработке
